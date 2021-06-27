@@ -13,32 +13,34 @@ class Body extends Component {
   }
 
     state={
-      videos: [this.props.videos],
+      videoName: '',
       visible:false
 
 }
 
-toggleState = () => {
+toggleState = (name) => {
   if(this.state.visible === false){
       this.setState({visible:true})
+      this.setState({videoName: name})
   }
   else{
       this.setState({visible:false})
+      this.setState({videoName: ''})
   }
 }
 
   render() {
     return (
       <>
-      {this.state.visible
-        ? <Video />
+      {(this.state.visible && this.state.videoName !== '')
+        ? <Video video={this.state.videoName} />
         : (
           <div className="main">
           <div>
             <Row>
   
               <Col className="bord">
-              <img onClick={() => this.toggleState()} className="img" src={Looks}/>
+              <img onClick={() => this.toggleState('Looks')} className="img" src={Looks}/>
   
                 <center>
                 <h2 className="highlight">
@@ -48,7 +50,7 @@ toggleState = () => {
               </Col>
               
               <Col className="bord">
-              <img onClick={() => this.toggleState()} className="img" src={Display}/>
+              <img onClick={() => this.toggleState('Display')} className="img" src={Display}/>
                 <center>
                 <h2 className="highlight">
                   Screen Display
@@ -59,7 +61,7 @@ toggleState = () => {
             <br />
             <Row>
               <Col className="bord">
-              <img onClick={() => this.toggleState()} className="img" src={Ram}/>
+              <img onClick={() => this.toggleState('Ram')} className="img" src={Ram}/>
                 <center>
                 <h2 className="highlight">
                   Ram Configuration
@@ -68,7 +70,7 @@ toggleState = () => {
               </Col>
               
               <Col className="bord">
-              <img onClick={() => this.toggleState()} className="img" src={Battery}/>
+              <img onClick={() => this.toggleState('Battery')} className="img" src={Battery}/>
                 <center>
                 <h2 className="highlight">
                   Battery Power
